@@ -21,8 +21,8 @@
   <body>
     <br>
     <div class="container">
-      <h1>Checkout</h1>
-      <form action="confirmacion.php" method="POST">
+      <h1>Confirmación</h1>
+      <form action="checkout.php" method="POST">
         <div class="form-row">
           <div class="form-group col-md-4">
             <span class="badge badge-success">Fecha desde</span>
