@@ -3,7 +3,6 @@ $('#fecha_desde').datepicker({
   autoclose : true
 });
 
-
 $('#fecha_hasta').datepicker({
   dateFormat: "dd/mm/yy",
   autoclose : true
