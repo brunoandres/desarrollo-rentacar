@@ -128,9 +128,6 @@
     </div>
 
     
-
-    
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -174,6 +171,13 @@
       var fecha_final_reserva = $("#fecha_hasta").val();
       var fecha_final_chile = $("#fecha_hasta_chile").val();
 
+      //Valido que la fecha inicial a Chile no sea mayor a la fecha final a Chile.
+      if($("#fecha_desde").val() > $("#fecha_hasta").val()){
+        alert("La fecha inicial de la reserva no puede ser mayor a la fecha final, debe ser antes del "+fecha_final_reserva);
+        $("#fecha_desde").focus();       // Esta función coloca el foco de escritura del usuario en el campo Nombre directamente.
+        return false;
+      }
+
       //Compruebo si el check de chile esta activado
       if ($("#check_chile").is(":checked")) {
 
@@ -201,12 +205,7 @@
           $("#fecha_hasta_chile").focus();       // Esta función coloca el foco de escritura del usuario en el campo Nombre directamente.
           return false;
         }
-        //Valido que la fecha inicial a Chile no sea mayor a la fecha final a Chile.
-        if($("#fecha_desde_chile").val() > $("#fecha_hasta_chile").val()){
-          alert("La fecha inicial a Chile no puede ser mayor a la fecha final, debe ser antes del "+fecha_final_chile);
-          $("#fecha_desde_chile").focus();       // Esta función coloca el foco de escritura del usuario en el campo Nombre directamente.
-          return false;
-        }
+
 
         // Campos de texto
         if($("#fecha_desde_chile").val() == ""){
