@@ -96,15 +96,33 @@
           </div>
         </div><!-- div que activa opciones de chile-->
 
-        <button type="button" id="botonenviar" class="btn btn-primary btn-lg">Siguiente</button>
+        <button type="button" id="botonenviar" class="btn btn-primary btn-xs">Buscar disponibilidad...</button>
       </form>
 
     </div>
 
-
+    <!--Activo formulario para completar reserva -->
     <div id="exito" style="display:none">
-      Reserva realizada!.
+      <div class="container mt-5">
+        <form action="checkout.php" method="POST">
+          <div class="form-group col-md-4">
+            <label>Nombre y Apellido</label>
+            <input type="text" name="fecha_hasta" class="form-control" id="" autocomplete="off" placeholder="Ingrese Nombre" value="">
+          </div>
+
+          <div class="form-group col-md-4">
+            <label>Nro de Vuelo</label>
+            <input type="text" name="fecha_hasta" class="form-control" id="" autocomplete="off" placeholder="Ingrese Nombre" value="">
+          </div>
+
+          <button type="submit" id="botonenviar" class="btn btn-success btn-xs">Continuar...</button>
+        </form>
+
+        
+      </div>
     </div>
+
+    <!--Activo mensaje de no disponibilidad -->
     <div id="fracaso" style="display:none">
       Sólo se reserva hasta 5 PAX!.
     </div>
