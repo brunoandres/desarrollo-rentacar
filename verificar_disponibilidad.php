@@ -11,7 +11,7 @@ $hDesde = '15:00:00';
 $hHasta = '15:00:00';
 $pCategoria = 0;
 
-$hay_disponibilidad = buscarDisponibilidad($pFechaDesde,$pFechaHasta,$hDesde,$hHasta,$pCategoria);
+$hay_disponibilidad = buscarDisponibilidad('2019-10-10','2019-10-20',$hDesde,$hHasta,$pCategoria);
 
 if($hay_disponibilidad){
     echo 1;
