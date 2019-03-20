@@ -1,6 +1,6 @@
 <?php 
-
-include('archivo_busca_disponibilidad.php');
+include("conexion_db.php");
+require('archivo_busca_disponibilidad.php');
 
 $pFechaDesde = $_POST['fecha_desde'];
 $pFechaHasta = $_POST['fecha_hasta'];
