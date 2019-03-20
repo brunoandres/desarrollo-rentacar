@@ -28,7 +28,7 @@ function buscarDisponibilidad($pFechaDesde,$pFechaHasta,$hDesde,$hHasta,$pCatego
 	$horaDesdeReserva = $hDesde;
 	$horaHastaReserva = $hHasta;
 
-	$db = conectar_MySql_server();
+	$db = new Conexion();
 	$sql="SELECT * from reservas WHERE vehiculo=$categoria and estado=1 and fhasta >= '2019-01-01' ";
 	//$sql="SELECT * from reservas WHERE estado = 1 and vehiculo=$categoria and fdesde between '$fechaDesdeReserva' and '$fechaHastaReserva'";
 	$resul = $db->query($sql);
