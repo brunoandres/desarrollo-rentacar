@@ -4,18 +4,13 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
     <!-- Link datepicker bootstrap -->
     <link rel="stylesheet" href="datepicker/css/datepicker.css">
-
     <!-- link datepicker jquery --> 
-
     <link rel="stylesheet" href="datepicker-jquery/jquery-ui.css">
     <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
-
     <!-- bootstrap toggle switch -->
     <link href="bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
 
@@ -25,7 +20,7 @@
     <br>
     <div class="container">
       <div id="errores"></div>
-      <h1>Formulario de reservas</h1>
+      <h1>Formulario de reservas Patagonia Austral</h1>
       <form id="formdata" method="POST">
         <div class="form-row">
           <div class="form-group col-md-4">
@@ -37,7 +32,7 @@
             <span class="badge badge-success">Fecha hasta</span>
             <input type="text" name="fecha_hasta" class="form-control" id="fecha_hasta" autocomplete="off" placeholder="Seleccione fecha" value="" readonly>
           </div>
-
+          
           <div class="form-group col-md-4">
             <span class="badge badge-success">Categoría</span>
             <select id="inputState" class="form-control" name="select_categoria">
@@ -74,11 +69,10 @@
             
           </div>
         </div>  
-
         <div id="activaChile" style="display: none"><!-- div que activa opciones de chile-->
           <div class="form-group col-md-4">
             <span class="badge badge-success">Paso Fronterizo</span>
-            <select id="inputState" class="form-control" name="select_paso">
+            <select id="inputState2" class="form-control" name="select_paso">
               <option selected>Seleccionar...</option>
               <option value="Paso Samoré (Osorno)">Paso Samoré (Osorno)</option>
               <option value="Paso Mamuil Malal (Junín de los Andes)">Paso Mamuil Malal (Junín de los Andes)</option>              
@@ -96,14 +90,16 @@
           </div>
         </div><!-- div que activa opciones de chile-->
 
-        <button type="button" id="botonenviar" class="btn btn-primary btn-xs">Buscar disponibilidad...</button>
+        <button type="button" id="botonenviar" class="btn btn-dark btn-xs">Buscar disponibilidad...</button>
       </form>
-
     </div>
 
     <!--Activo formulario para completar reserva -->
     <div id="exito" style="display:none">
       <div class="container mt-5">
+        <div class="alert alert-success" role="alert">
+          Buena suerte, tenemos vehículos disponibles, complete el siguiente formulario para finalizar la reserva. 
+        </div>
         <form action="checkout.php" method="POST">
           <div class="form-group col-md-4">
             <label>Nombre y Apellido</label>
@@ -116,18 +112,19 @@
           </div>
 
           <button type="submit" id="botonenviar" class="btn btn-success btn-xs">Continuar...</button>
-        </form>
-
-        
+        </form>   
       </div>
     </div>
 
     <!--Activo mensaje de no disponibilidad -->
     <div id="fracaso" style="display:none">
-      Sólo se reserva hasta 5 PAX!.
+      <div class="container mt-5">
+        <div class="alert alert-danger" role="alert">
+        Upps! no hay disponibilidad en las fechas seleccionadas, <a href="index.php" class="alert-link">Intente otras fechas</a>. Muchas gracias.
+        </div>
+      </div>
     </div>
 
-    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -139,14 +136,10 @@
     <!-- -->
 
     <!-- datepicker jquery-->
-
-    
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="datepicker-jquery/jquery-ui.js"></script>
 
     <!-- -->
-
-
     <!-- bootstrap toggle switch -->
 
     <script src="bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
@@ -155,17 +148,34 @@
     <script type="text/javascript">
       $(function () {
         $("#check_chile").click(function () {
-            if ($(this).is(":checked")) {
-                $("#activaChile").show();
-            } else {
-                $("#activaChile").hide();
-            }
+          if ($(this).is(":checked")) {
+              $("#activaChile").show();
+          } else {
+              $("#activaChile").hide();
+          }
         });
-    });
+      });
     </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
       function validaForm(){
+      // Campos de texto
+      if($("#fecha_desde").val() == ""){
+        //alert("Seleccione fecha inicial.");
+        $("#fecha_desde").focus();       // Esta función coloca el foco de escritura del usuario en el campo Nombre directamente.
+        return false;
+      }
+  
+      if($("#fecha_hasta").val() == ""){
+        //alert("Seleccione fecha final.");
+        $("#fecha_hasta").focus();
+        return false;
+      }
+      if($("#inputState").val() == "Seleccionar..."){
+        alert("Selecciona una categoria.");
+        $("#inputState").focus();
+        return false;
+      }
       //Compruebo que la fecha inicial para Chile no sea menor a la fecha inicial de la reserva en general.
       var fecha_inicial_reserva = $("#fecha_desde").val();
       var fecha_final_reserva = $("#fecha_hasta").val();
@@ -178,8 +188,27 @@
         return false;
       }
 
-      //Compruebo si el check de chile esta activado
+      //Primero compruebo si el check de chile esta activado, para validar fechas
       if ($("#check_chile").is(":checked")) {
+        //Valido la seleccion un paso fronterizo
+        if($("#inputState2").val() == "Seleccionar..."){
+          alert("Seleccione un Paso Fronterizo.");
+          $("#inputState2").focus();
+          return false;
+        }
+
+        //Valido que ingresen las fechas en ambos campos
+        if($("#fecha_desde_chile").val() == ""){
+          //alert("Seleccione fecha inicial.");
+          $("#fecha_desde_chile").focus();       // Esta función coloca el foco de escritura del usuario en el campo Nombre directamente.
+          return false;
+        }
+    
+        if($("#fecha_hasta_chile").val() == ""){
+          //alert("Seleccione fecha final.");
+          $("#fecha_hasta_chile").focus();
+          return false;
+        }
 
         //Valido que la fecha inicial a Chile no sea antes de la fecha inicial de la reserva.
         if( $("#fecha_desde_chile").val() < $("#fecha_desde").val() ){
@@ -205,38 +234,8 @@
           $("#fecha_hasta_chile").focus();       // Esta función coloca el foco de escritura del usuario en el campo Nombre directamente.
           return false;
         }
-
-
-        // Campos de texto
-        if($("#fecha_desde_chile").val() == ""){
-            //alert("Seleccione fecha inicial.");
-            $("#fecha_desde_chile").focus();       // Esta función coloca el foco de escritura del usuario en el campo Nombre directamente.
-            return false;
-        }
-    
-        if($("#fecha_hasta_chile").val() == ""){
-            //alert("Seleccione fecha final.");
-            $("#fecha_hasta_chile").focus();
-            return false;
-        }
       }
-      // Campos de texto
-      if($("#fecha_desde").val() == ""){
-          //alert("Seleccione fecha inicial.");
-          $("#fecha_desde").focus();       // Esta función coloca el foco de escritura del usuario en el campo Nombre directamente.
-          return false;
-      }
-  
-      if($("#fecha_hasta").val() == ""){
-          //alert("Seleccione fecha final.");
-          $("#fecha_hasta").focus();
-          return false;
-      }/*
-      if($("#inputState").val() == "Seleccionar..."){
-          alert("Selecciona una categoria.");
-          $("#inputState").focus();
-          return false;
-      }*/
+      
       return true; // Si todo está correcto
       }
     </script>
@@ -247,12 +246,16 @@
               if(validaForm()){                               // Primero validará el formulario.
                   $.post("enviar.php",$("#formdata").serialize(),function(res){
                       $("#formulario").fadeOut("slow");   // Hacemos desaparecer el div "formulario" con un efecto fadeOut lento.
-                      if(res == 1){
+                      if(res == 1){ // 1 es el resultado positivo del procesamiento en el archivo enviar.php
                           $("#exito").delay(50).fadeIn("slow");
-                          $("#fecha_desde").val("");
-                          $("#fecha_hasta").val("");
+                          $("#fecha_desde").val(""); //Dejo el campo vacio de las fechas luego de buscar disponibilidad
+                          $("#fecha_hasta").val(""); //Dejo el campo vacio de las fechas luego de buscar disponibilidad
+                          $("#check_chile").prop('disabled', true); //Desactivamos el check a Chile despues de buscar disponibilidad
                           // Si hemos tenido éxito, hacemos aparecer el div "exito" con un efecto fadeIn lento tras un delay de 0,5 segundos.
+                          $("#botonenviar").prop('disabled', true);
+                          $("#fracaso").delay(50).fadeOut("slow");
                       } else {
+                          $("#exito").delay(50).fadeOut("slow");
                           $("#fracaso").delay(50).fadeIn("slow");    // Si no, lo mismo, pero haremos aparecer el div "fracaso"
                       }
                   });
