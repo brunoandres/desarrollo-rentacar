@@ -20,9 +20,6 @@ define("CANTH1", 1);
 #CATEGORIA F unica
 define("CANTSONIC", 1);
 
-
-//ultima modificacion cant autos : 11/07/2018
-
 function buscarDisponibilidad($pFechaDesde,$pFechaHasta,$hDesde,$hHasta,$pCategoria){
 
 	$categoria=$pCategoria;
@@ -31,13 +28,13 @@ function buscarDisponibilidad($pFechaDesde,$pFechaHasta,$hDesde,$hHasta,$pCatego
 	$horaDesdeReserva = $hDesde;
 	$horaHastaReserva = $hHasta;
 
-	$db = new Conexion();
-	$sql="SELECT * from reservas WHERE vehiculo=$categoria and estado=1 and fhasta >= '2018-01-01' ";
+	$db = conectar_MySql_server();
+	$sql="SELECT * from reservas WHERE vehiculo=$categoria and estado=1 and fhasta >= '2019-01-01' ";
 	//$sql="SELECT * from reservas WHERE estado = 1 and vehiculo=$categoria and fdesde between '$fechaDesdeReserva' and '$fechaHastaReserva'";
 	$resul = $db->query($sql);
 
+	//RESERVA COMIENZA EN FALSE
 	$reserva= false;
-
 
 	switch ($categoria) {
     case 0://A
@@ -105,10 +102,7 @@ function buscarDisponibilidad($pFechaDesde,$pFechaHasta,$hDesde,$hHasta,$pCatego
 				$contador = $contador;
 				$margen = true;
 				
-			}
-
-			
-				
+			}				
 			if ($reserva==false and $margen==false){	
 				$contador = $contador - 1;
 				$sumaDeChoques =$sumaDeChoques+1;
