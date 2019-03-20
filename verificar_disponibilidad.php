@@ -13,7 +13,7 @@ $pCategoria = 0;
 
 $hay_disponibilidad = buscarDisponibilidad('2019-10-10','2019-10-20',$hDesde,$hHasta,$pCategoria);
 
-if($hay_disponibilidad){
+if($hay_disponibilidad>0){
     echo 1;
 }else{
     echo 0;
