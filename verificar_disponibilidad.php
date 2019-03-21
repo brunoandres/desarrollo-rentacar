@@ -4,13 +4,13 @@ ini_set('display_errors', '1');
 
 require('archivo_busca_disponibilidad.php');
 
-/*$pFechaDesde = $_POST['fecha_desde'];
-$pFechaHasta = $_POST['fecha_hasta'];
-$hDesde = '15:00:00';
-$hHasta = '15:00:00';
-$pCategoria = 0;*/
+$fecha_desde = $_POST['fecha_desde'];
+$fecha_hasta = $_POST['fecha_hasta'];
+$hora_desde = '15:00:00';
+$hora_hasta = '15:00:00';
+$categoria_auto = $_POST['select_categoria'];
 
-$hay_disponibilidad = buscarDisponibilidad('2019-10-10','2019-10-20','15:00:00','15:00:00',0);
+$hay_disponibilidad = buscarDisponibilidad($fecha_desde,$fecha_hasta,$hora_desde,$hora_hasta,$categoria_auto);
 
 if($hay_disponibilidad>0){
     echo 1;
