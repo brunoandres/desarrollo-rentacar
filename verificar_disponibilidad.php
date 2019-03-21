@@ -2,7 +2,6 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-include("conexion_db.php");
 require('archivo_busca_disponibilidad.php');
 
 $pFechaDesde = $_POST['fecha_desde'];
