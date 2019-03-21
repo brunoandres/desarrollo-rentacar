@@ -146,6 +146,6 @@ function check_in_range($start_date, $end_date, $date_from_user)
   return (($user_ts >= $start_ts) && ($user_ts <= $end_ts));
 }
 
-echo $hay_disponibilidad = buscarDisponibilidad('2019-10-10','2019-10-20',$hDesde,$hHasta,$pCategoria);
+echo $hay_disponibilidad = buscarDisponibilidad('2019-10-10','2019-10-20','15:00:00','15:00:00',0);
 
 ?>
