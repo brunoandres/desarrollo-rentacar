@@ -13,7 +13,7 @@
     <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
     <!-- bootstrap toggle switch -->
     <link href="bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
-    
+
     <title>Desarrollo Rentacar</title>
   </head>
   <body>
@@ -119,6 +119,14 @@
         </div>
       </div>
     </div>
+    <div id="mensaje" style="display:none">
+      <div class="container mt-5">
+        <div class="alert alert-danger" role="alert">
+        Viaje a Chile, <a href="index.html" class="alert-link">Intente otras fechas</a>. Muchas gracias.
+        </div>
+      </div>
+    </div>
+    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -249,7 +257,10 @@
                           // Si hemos tenido éxito, hacemos aparecer el div "exito" con un efecto fadeIn lento tras un delay de 0,5 segundos.
                           $("#botonenviar").prop('disabled', true);
                           $("#fracaso").delay(50).fadeOut("slow");
-                      } else {
+                      }else if(res == 2){
+                        $("#mensaje").delay(50).fadeIn("slow");
+                      } 
+                      else {
                           $("#exito").delay(50).fadeOut("slow");
                           $("#fracaso").delay(50).fadeIn("slow");    // Si no, lo mismo, pero haremos aparecer el div "fracaso"
                       }
