@@ -74,7 +74,7 @@
         <?php endif ?>
         
         <button type="submit" class="btn btn-primary btn-lg">Siguiente</button>
-        <a href="index.php"><button type="button" class="btn btn-warning btn-lg">Cancelar</button></a>
+        <a href="index.html"><button type="button" class="btn btn-warning btn-lg">Cancelar</button></a>
       </form>
     </div>
     <!-- Optional JavaScript -->
