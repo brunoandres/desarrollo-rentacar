@@ -251,8 +251,6 @@
                       $("#formulario").fadeOut("slow");   // Hacemos desaparecer el div "formulario" con un efecto fadeOut lento.
                       if(res == 1){ // 1 es el resultado positivo del procesamiento en el archivo enviar.php
                           $("#exito").delay(50).fadeIn("slow");
-                          $("#fecha_desde").val(""); //Dejo el campo vacio de las fechas luego de buscar disponibilidad
-                          $("#fecha_hasta").val(""); //Dejo el campo vacio de las fechas luego de buscar disponibilidad
                           $("#check_chile").prop('disabled', true); //Desactivamos el check a Chile despues de buscar disponibilidad
                           // Si hemos tenido éxito, hacemos aparecer el div "exito" con un efecto fadeIn lento tras un delay de 0,5 segundos.
                           $("#botonenviar").prop('disabled', true);
