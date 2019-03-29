@@ -63,11 +63,8 @@ function buscarDisponibilidad($pFechaDesde,$pFechaHasta,$hDesde,$hHasta,$pCatego
     	break;
 	}//fin switch*/
 
+	//Contador de autos
 	$contador = contabilizarAutos($categoria);
-
-	if ($contador==0) {
-		exit;
-	}
 
 
 	//Creo una variable para ir contabilizando las veces que las fechas no coinciden y no hay disponibilidad.
