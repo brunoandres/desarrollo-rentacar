@@ -1,6 +1,8 @@
 <?php  
 include("conexion_db.php");
-include("archivo_total_autos.php");//Archivo para contabilizar autos por categoria
+
+//Archivo para contabilizar autos por categoria
+include("archivo_total_autos.php");
 
 echo contabilizarAutos(0);
 

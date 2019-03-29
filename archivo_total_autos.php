@@ -1,6 +1,6 @@
 <?php 
 
-include("conexion_db.php");
+//include("conexion_db.php");
 
 //Funcion para devolver la cantidad de autos por categoria
 function contabilizarAutos($categoria){
