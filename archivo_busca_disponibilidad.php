@@ -42,7 +42,7 @@ function buscarDisponibilidad($pFechaDesde,$pFechaHasta,$hDesde,$hHasta,$pCatego
 	$reserva = false;
 
 	//Switch para contabilizar las cantidades de autos por categoria solicitada.
-	/*switch ($categoria) {
+	switch ($categoria) {
     case 0://A
         $contador = CANTGOL+CANTCORSA+CANTCLIO+CANTONIX+CANTKWID;
         break;
@@ -61,9 +61,9 @@ function buscarDisponibilidad($pFechaDesde,$pFechaHasta,$hDesde,$hHasta,$pCatego
     case 5://F
     	$contador = CANTSONIC;
     	break;
-	}//fin switch*/
+	}//fin switch
 
-	$contador = contabilizarAutos($categoria);
+	//$contador = contabilizarAutos($categoria);
 
 
 	//Creo una variable para ir contabilizando las veces que las fechas no coinciden y no hay disponibilidad.
