@@ -12,5 +12,5 @@ function contabilizarAutos($categoria){
 
 }
 
-
+echo contabilizarAutos(0);
 ?>
