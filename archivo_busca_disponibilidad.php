@@ -1,5 +1,9 @@
 <?php  
 include("conexion_db.php");
+include("archivo_total_autos.php");//Archivo para contabilizar autos por categoria
+
+echo contabilizarAutos(0);
+
 //Defino la cantidad de autos por categoria
 #CATEGORIA A
 define("CANTGOL", 3);

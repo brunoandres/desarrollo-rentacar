@@ -12,7 +12,7 @@ $hora_desde = '15:00:00';
 $hora_hasta = '15:00:00';
 $categoria_auto = $_POST['select_categoria'];
 
-
+//Si activo el check de viaje a Chile
 if(!empty($_POST['check_chile'])) 
 {
     echo 2;
