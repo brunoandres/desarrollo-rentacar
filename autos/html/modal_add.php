@@ -35,12 +35,12 @@
 						<div class="form-group">
 							<label>Habilitado</label>
 							<select name="habilitado">
-								<option value="1">A</option>
-								<option value="0">B</option>
+								<option value="1">Si</option>
+								<option value="0">No</option>
 							</select>
 						</div>
 						<div class="form-group">
-							<label>Habilitado</label>
+							<label>Chile</label>
 							<select name="viaja_chile">
 								<option value="1">Si</option>
 								<option value="0">No</option>
