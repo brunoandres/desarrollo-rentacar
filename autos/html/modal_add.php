@@ -10,12 +10,12 @@
 						<div class="form-group">
 							<label>Categoria</label>
 							<select name="categoria">
-								<opton value="0">A</option>
-								<opton value="1">B</option>
-								<opton value="2">C</option>
-								<opton value="3">D</option>
-								<opton value="4">E</option>
-								<opton value="5">F</option>
+								<option value="0">A</option>
+								<option value="1">B</option>
+								<option value="2">C</option>
+								<option value="3">D</option>
+								<option value="4">E</option>
+								<option value="5">F</option>
 							</select>
 							
 						</div>					
@@ -35,15 +35,15 @@
 						<div class="form-group">
 							<label>Habilitado</label>
 							<select name="habilitado">
-								<opton value="1">A</option>
-								<opton value="0">B</option>
+								<option value="1">A</option>
+								<option value="0">B</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label>Habilitado</label>
 							<select name="viaja_chile">
-								<opton value="1">Si</option>
-								<opton value="0">No</option>
+								<option value="1">Si</option>
+								<option value="0">No</option>
 							</select>
 						</div>					
 					</div>
