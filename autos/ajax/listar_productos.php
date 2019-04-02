@@ -40,12 +40,12 @@ if($action == 'ajax'){
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th class='text-center'>Código</th>
-						<th>Producto </th>
-						<th>Categoría </th>
-						<th class='text-center'>Stock</th>
-						<th class='text-right'>Precio</th>
-						<th></th>
+						<th class='text-center'>Categoria</th>
+						<th class='text-center'>Marca </th>
+						<th class='text-center'>Modelo </th>
+						<th class='text-center'>Patente</th>
+						<th class='text-right'>Habilitado</th>
+						<th class='text-center'>Viaja a Chile</th>
 					</tr>
 				</thead>
 				<tbody>	
@@ -57,7 +57,8 @@ if($action == 'ajax'){
 							$prod_name=$row['marca'];
 							$prod_ctry=$row['modelo'];
 							$prod_qty=$row['patente'];
-							$price=$row['habilitado'];						
+							$price=$row['habilitado'];	
+							$viaja_chile=$row['viaja_chile'];							
 							$finales++;
 						?>	
 						<tr class="<?php echo $text_class;?>">
@@ -65,7 +66,9 @@ if($action == 'ajax'){
 							<td ><?php echo $prod_name;?></td>
 							<td ><?php echo $prod_ctry;?></td>
 							<td class='text-center' ><?php echo $prod_qty;?></td>
-							<td class='text-right'><?php echo number_format($price,2);?></td>
+							<td class='text-right'><?php if ($price==1) {
+								echo 'Si';
+							}else{echo 'No';}?></td>
 							<td>
 								<a href="#"  data-target="#editProductModal" class="edit" data-toggle="modal" data-code='<?php echo $prod_code;?>' data-name="<?php echo $prod_name?>" data-category="<?php echo $prod_ctry?>" data-stock="<?php echo $prod_qty?>" data-price="<?php echo $price;?>" data-id="<?php echo $product_id; ?>"><i class="material-icons" data-toggle="tooltip" title="Editar" >&#xE254;</i></a>
 								<a href="#deleteProductModal" class="delete" data-toggle="modal" data-id="<?php echo $product_id;?>"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
