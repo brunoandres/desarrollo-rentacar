@@ -4,28 +4,11 @@ include("conexion_db.php");
 //Archivo para contabilizar autos por categoria
 include("archivo_total_autos.php");
 
+//Agrego un nuevo parametro a mi Funcion, checkChile para realizar la consulta segun se requiera
+//Seteo parametro CheckChile en NULL
+function buscarDisponibilidad($pFechaDesde,$pFechaHasta,$hDesde,$hHasta,$pCategoria,$checkChile = NULL){
 
-//Defino la cantidad de autos por categoria
-#CATEGORIA A
-define("CANTGOL", 3);
-define("CANTCORSA", 2);
-define("CANTCLIO", 1);
-define("CANTONIX", 1);
-define("CANTKWID", 1);
-#CATEGORIA B
-define("CANTVOYAGE", 4);
-define("CANTLOGAN", 6);
-#CATEGORIA C
-define("CANTSURAN", 3);
-define("CANTCRONOS", 1);
-#CATEGORIA D
-define("CANTSPIN", 2);
-#CATEGORIA E
-define("CANTH1", 1);
-#CATEGORIA F unica
-define("CANTSONIC", 1);
-
-function buscarDisponibilidad($pFechaDesde,$pFechaHasta,$hDesde,$hHasta,$pCategoria){
+	$db = new Conexion();
 
 	$categoria         = $pCategoria;
 	$fechaDesdeReserva = $pFechaDesde;
@@ -33,35 +16,23 @@ function buscarDisponibilidad($pFechaDesde,$pFechaHasta,$hDesde,$hHasta,$pCatego
 	$horaDesdeReserva  = $hDesde;
 	$horaHastaReserva  = $hHasta;
 
-	$db = new Conexion();
+	//Compruebo si viene vacio parametro CheckChile
+	if(!empty($checkChile)){ 
+		$checkChile = $checkChile; 
+		$where      = "";
+	} 
+	else {
+		$checkChile = "NULL";	 
+		$where      = "";
+	}
+
 	//Consulto todas las reservas confirmadas donde la fecha sea mayor al año corriente.
-	$sql   = "SELECT * from reservas WHERE vehiculo=$categoria and estado=1 and fhasta >= '2019-01-01' ";
+	$sql  = "SELECT * from reservas WHERE vehiculo=$categoria and estado=1 and fhasta >= '2019-01-01' $where ";
+	// $sql = "SELECT * from reservas WHERE vehiculo=$categoria and estado=1 and fhasta >= DATE(NOW());";
 	$resul = $db->query($sql);
 
 	//La disponibilidad comienza en estado False.
 	$reserva = false;
-
-	//Switch para contabilizar las cantidades de autos por categoria solicitada.
-	/*switch ($categoria) {
-    case 0://A
-        $contador = CANTGOL+CANTCORSA+CANTCLIO+CANTONIX+CANTKWID;
-        break;
-    case 1://B
-       $contador  = CANTLOGAN+CANTVOYAGE;
-        break;
-    case 2://C
-        $contador = CANTSURAN+CANTCRONOS;
-        break;
-    case 3://D
-    	$contador = CANTSPIN;
-    	break;
-    case 4://E
-    	$contador = CANTH1;
-    	break;
-    case 5://F
-    	$contador = CANTSONIC;
-    	break;
-	}//fin switch*/
 
 	//Contador de autos
 	$contador = contabilizarAutos($categoria);

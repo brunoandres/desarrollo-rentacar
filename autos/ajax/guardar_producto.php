@@ -1,22 +1,23 @@
 <?php
-	if (empty($_POST['name'])){
-		$errors[] = "Ingresa el nombre del producto.";
-	} elseif (!empty($_POST['name'])){
+	if (empty($_POST['marca'])){
+		$errors[] = "Ingrese la marca del Auto.";
+	} elseif (!empty($_POST['marca'])){
 	require_once ("../conexion.php");//Contiene funcion que conecta a la base de datos
 	// escaping, additionally removing everything that could be (html/javascript-) code
-    $prod_code = mysqli_real_escape_string($con,(strip_tags($_POST["code"],ENT_QUOTES)));
-	$prod_name = mysqli_real_escape_string($con,(strip_tags($_POST["name"],ENT_QUOTES)));
-	$prod_ctry = mysqli_real_escape_string($con,(strip_tags($_POST["category"],ENT_QUOTES)));
-	$stock = intval($_POST["stock"]);
-	$price = floatval($_POST["price"]);
+    $categoria = mysqli_real_escape_string($con,(strip_tags($_POST["categoria"],ENT_QUOTES)));
+	$marca = mysqli_real_escape_string($con,(strip_tags($_POST["marca"],ENT_QUOTES)));
+	$modelo = mysqli_real_escape_string($con,(strip_tags($_POST["modelo"],ENT_QUOTES)));
+	$patente = mysqli_real_escape_string($con,(strip_tags($_POST["patente"],ENT_QUOTES)));
+	$habilitado = mysqli_real_escape_string($con,(strip_tags($_POST["habilitado"],ENT_QUOTES)));
+	$viaja_chile = mysqli_real_escape_string($con,(strip_tags($_POST["viaja_chile"],ENT_QUOTES)));
 	
 
 	// REGISTER data into database
-    $sql = "INSERT INTO tblprod(id, prod_code, prod_name, prod_ctry, prod_qty, price) VALUES (NULL,'$prod_code','$prod_name','$prod_ctry','$stock','$price')";
+    $sql = "INSERT INTO autos(id_categoria, marca, modelo, patente, habilitado, viaja_chile) VALUES ($categoria,'$marca','$modelo','$patente',$habilitado,$viaja_chile)";
     $query = mysqli_query($con,$sql);
     // if product has been added successfully
     if ($query) {
-        $messages[] = "El producto ha sido guardado con éxito.";
+        $messages[] = "El auto ha sido guardado con éxito.";
     } else {
         $errors[] = "Lo sentimos, el registro falló. Por favor, regrese y vuelva a intentarlo.";
     }
